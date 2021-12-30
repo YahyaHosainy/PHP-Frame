@@ -1,0 +1,133 @@
+# change directory index
+DirectoryIndex index.php index.html index.mhtml index.htm index.phtml
+
+# set default time zone 
+SetEnv TZ Asis/Kabul
+
+# set admin email
+
+# custom error page
+# ErrorDocument 400 /error.php?name=400
+# ErrorDocument 401 /error.php?name=401
+# ErrorDocument 403 /error.php?name=403
+# ErrorDocument 404 /error.php?name=404
+# ErrorDocument 500 /error.php?name=500
+# ErrorDocument 502 /error.php?name=502
+# ErrorDocument 504 /error.php?name=504
+# ErrorDocument 100 /100_CONTINUE
+# ErrorDocument 101 /101_SWITCHING_PROTOCOLS
+# ErrorDocument 102 /102_PROCESSING
+# ErrorDocument 200 /200_OK
+# ErrorDocument 201 /201_CREATED
+# ErrorDocument 202 /202_ACCEPTED
+# ErrorDocument 203 /203_NON_AUTHORITATIVE
+# ErrorDocument 204 /204_NO_CONTENT
+# ErrorDocument 205 /205_RESET_CONTENT
+# ErrorDocument 206 /206_PARTIAL_CONTENT
+# ErrorDocument 207 /207_MULTI_STATUS
+# ErrorDocument 300 /300_MULTIPLE_CHOICES
+# ErrorDocument 301 /301_MOVED_PERMANENTLY
+# ErrorDocument 302 /302_MOVED_TEMPORARILY
+# ErrorDocument 303 /303_SEE_OTHER
+# ErrorDocument 304 /304_NOT_MODIFIED
+# ErrorDocument 305 /305_USE_PROXY
+# ErrorDocument 307 /307_TEMPORARY_REDIRECT
+# ErrorDocument 400 /400_BAD_REQUEST
+# ErrorDocument 401 /401_UNAUTHORIZED
+# ErrorDocument 402 /402_PAYMENT_REQUIRED
+# ErrorDocument 403 /403_FORBIDDEN
+# ErrorDocument 404 /404_NOT_FOUND
+# ErrorDocument 405 /405_METHOD_NOT_ALLOWED
+# ErrorDocument 406 /406_NOT_ACCEPTABLE
+# ErrorDocument 407 /407_PROXY_AUTHENTICATION_REQUIRED
+# ErrorDocument 408 /408_REQUEST_TIME_OUT
+# ErrorDocument 409 /409_CONFLICT
+# ErrorDocument 410 /410_GONE
+# ErrorDocument 411 /411_LENGTH_REQUIRED
+# ErrorDocument 412 /412_PRECONDITION_FAILED
+# ErrorDocument 413 /413_REQUEST_ENTITY_TOO_LARGE
+# ErrorDocument 414 /414_REQUEST_URI_TOO_LARGE
+# ErrorDocument 415 /415_UNSUPPORTED_MEDIA_TYPE
+# ErrorDocument 416 /416_RANGE_NOT_SATISFIABLE
+# ErrorDocument 417 /417_EXPECTATION_FAILED
+# ErrorDocument 422 /422_UNPROCESSABLE_ENTITY
+# ErrorDocument 423 /423_LOCKED
+# ErrorDocument 424 /424_FAILED_DEPENDENCY
+# ErrorDocument 426 /426_UPGRADE_REQUIRED
+# ErrorDocument 500 /500_INTERNAL_SERVER_ERROR
+# ErrorDocument 501 /501_NOT_IMPLEMENTED
+# ErrorDocument 502 /502_BAD_GATEWAY
+# ErrorDocument 503 /503_SERVICE_UNAVAILABLE
+# ErrorDocument 504 /504_GATEWAY_TIME_OUT
+# ErrorDocument 505 /505_VERSION_NOT_SUPPORTED
+# ErrorDocument 506 /506_VARIANT_ALSO_VARIES
+# ErrorDocument 507 /507_INSUFFICIENT_STORAGE
+# ErrorDocument 510 /510_NOT_EXTENDED
+
+# disable directory browsing
+Options All -Indexes
+
+# set default charset
+AddDefaultCharset UTF-8
+
+# set default language
+DefaultLanguage en-US
+
+# secure this files
+<FilesMatch ".(htaccess|htpasswd|ini|phps|fla|psd|log|sh|private|inc)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
+
+# change .htaccess file name for sub directories
+# AccessFileName .htaccessi
+
+# Remove the Need for www in Your URL
+# RewriteEngine On
+# RewriteBase /
+# RewriteCond %{HTTP_HOST} ^www.yourdomain.com [NC]
+# RewriteRule ^(.*)$ http://yourdomain.com/$1 [L,R=301]
+
+# Rewrite to www
+# RewriteCond %{REQUEST_URI} !^/(robots\.txt|favicon\.ico|sitemap\.xml)$
+# RewriteCond %{HTTP_HOST} !^www\.yourdomain\.com$ [NC]
+# RewriteRule ^(.*)$ https://www.yourdomain.com/$1 [R=301,L]
+
+# Redirect non-https requests to https server
+# SSLOptions +StrictRequire
+# SSLRequireSSL
+# SSLRequire %{HTTP_HOST} eq "askapache.com"
+# ErrorDocument 403 https://askapache.
+
+# Disallow Script Execution
+# Options -ExecCGI
+# AddHandler cgi-script .php .pl .py .jsp .asp .htm .shtml .sh .cgi
+
+# Deny Request Methods
+# RewriteCond %{REQUEST_METHOD} !^(GET|HEAD|OPTIONS|POST|PUT)
+# RewriteRule .? - [F]
+
+# Force "File Save As" Prompt
+# AddType application/octet-stream .avi .mpg .mov .pdf .xls .mp4
+
+# Serve all .pdf files on your site using .htaccess and mod_rewrite with the php script.
+# RewriteCond %{REQUEST_FILENAME} -f
+# RewriteRule ^(.+)\.pdf$  /cgi-bin/pdf.php?file=$1 [L,NC,QSA]
+
+# Password protect login file
+# <Files auth.php>
+#   AuthName "Prompt"
+#   AuthType Basic
+#   AuthUserFile C:\wamp\BargCMS_Clear\.htpasswd
+#   Require valid-user
+# </Files>
+
+# beauty url to images
+# RewriteEngine On
+# RewriteRule ^images/([0-9a-z]+)/(.*) images.php?width=$1&url=$2 [NC,L]
+# ([0-9a-zA-Z.+-_()\[\]'@!,\^*:;"=ا-ی]|\s)+
+
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^.*$ /index.php [L,QSA]

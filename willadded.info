@@ -1,0 +1,7 @@
+1) main session for CSRF                100%
+2) flash redirect , message             100%
+3) form validation                no
+4) MVC                                  100%
+5) req                                  100%
+6) static folder                        100%
+7) XSS                            no
